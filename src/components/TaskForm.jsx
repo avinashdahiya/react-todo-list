@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import './TaskStyles.css';
 
 const TaskForm = ({ onAdd }) => {
-  const [task, setTask] = useState('');
+  const [text, setText] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (task.trim()) {
-      onAdd(task);
-      setTask('');
+    if (text.trim() !== '') {
+      onAdd(text.trim());
+      setText('');
     }
   };
 
@@ -16,12 +16,11 @@ const TaskForm = ({ onAdd }) => {
     <form className="task-form" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="Enter a task..."
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        required
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Enter a new task"
       />
-      <button type="submit">Submit</button>
+      <button type="submit">Add</button>
     </form>
   );
 };
